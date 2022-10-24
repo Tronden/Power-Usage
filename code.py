@@ -1,5 +1,6 @@
 from asyncio.format_helpers import _format_callback_source
 import numpy as np
+from sqlalchemy import all_
 
 Usage2011 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
 Usage2012 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
@@ -9,6 +10,10 @@ def getAMSdata(filnavn, rad_nr):
     startTid, stopTid = np.loadtxt(filnavn, dtype=str , delimiter=";", skiprows=1, unpack=True, usecols=(0,1))
     forbruk = np.loadtxt(filnavn, delimiter=";", skiprows=1, unpack=True, usecols=(2))
     return startTid, stopTid, forbruk
+
+def getFORBRUKdata(filnavn):
+    forbruk = np.loadtxt(filnavn, delimiter=";", skiprows=1, unpack=True, usecols=(2))
+    return forbruk
 
 """
 Test for å sjekke innlesing.
@@ -21,8 +26,7 @@ vis_rad(Usage2011, 0)
 """
 
 def getAverage(filnavn): # Rekner ut average forbruk for alle forbruksverdiene på lista.
-    forbruk = sum(np.loadtxt(filnavn, delimiter=";", skiprows=1, unpack=True, usecols=(2)))
-    avgforbruk = forbruk / len(np.loadtxt(filnavn, delimiter=";", skiprows=1, unpack=True, usecols=(2)))
+    avgforbruk = sum(getFORBRUKdata(filnavn))/len(getFORBRUKdata(filnavn))
     print ("Average forbruk", filnavn[-8:-4], round(avgforbruk,3), "kWh")
     return avgforbruk
 
