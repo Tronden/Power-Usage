@@ -6,8 +6,8 @@ Usage1 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniør
 Usage2 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
 Usage3 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
 
-Liste = Usage2
-Rad = 100
+Liste = Usage3
+Rad = 400
 
 def getAMSdata(filnavn):
     startTid, stopTid = np.loadtxt(filnavn, dtype=str , delimiter=";", skiprows=1, unpack=True, usecols=(0,1))
@@ -46,7 +46,7 @@ def getDaysInMonth(filnavn, rad_nr):
     days = monthrange(getYear(filnavn, rad_nr), int(getstartTiddata(filnavn, rad_nr)[3:5]))
     return days[1]
 
-def getdays(filnavn, rad_nr):
+def getDays(filnavn, rad_nr):
     days = int(getstartTiddata(filnavn, rad_nr)[0:2])
     return days
 
@@ -96,6 +96,14 @@ def findefficiency(filnavn, rad_nr):
     eff = findPeakInterval(filnavn)[0]/getAverage(filnavn)
     return eff
 
+def geteffectpeak(filnavn, rad_nr):
+    effpeak = findPeakInterval(filnavn)[0]*getHours(filnavn, rad_nr)
+    return effpeak
+
+def geteffectaverage(filnavn, rad_nr):
+    effavg = getAverage(filnavn)*getHours(filnavn, rad_nr)
+    return effavg
+
 vis_rad(Liste, Rad)
 
 print("Year:", getYear(Liste, Rad))
@@ -113,3 +121,5 @@ print("Average dagsforbruk for", getMonth(Liste, Rad), "er", round(getAverageDay
 print("Average timeforbruk for", getMonth(Liste, Rad), "er", round(getAverageHour(Liste, Rad),3), "kWh")
 
 print("Efficiency er", round(findefficiency(Liste, Rad),3))
+print("Effektiviteten for", getMonth(Liste, Rad), "er", round(geteffectpeak(Liste, Rad),3), "kWh")
+print("Effektiviteten for", getMonth(Liste, Rad), "er", round(geteffectaverage(Liste, Rad),3), "kWh")
