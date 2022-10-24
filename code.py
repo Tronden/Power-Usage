@@ -4,7 +4,10 @@ from calendar import monthrange
 
 Usage1 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
 Usage2 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
-Usage3 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202013.csv"
+Usage3 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
+
+Liste = Usage2
+Rad = 100
 
 def getAMSdata(filnavn):
     startTid, stopTid = np.loadtxt(filnavn, dtype=str , delimiter=";", skiprows=1, unpack=True, usecols=(0,1))
@@ -64,25 +67,49 @@ def findLowestInterval(filnavn):
     lowestindex = np.where(forbruk == lowest)
     lowestindex = lowestindex[0][0]
     return lowest, lowestindex
-    
+
+def getAverageYear(filnavn, rad_nr):
+    avgYear = getAverage(filnavn)*365
+    return avgYear
+
 def getAverageMonth(filnavn, rad_nr):
     avgMonth = getAverage(filnavn)*getDaysInMonth(filnavn, rad_nr)
-    print("Average forbruk for", getMonth(filnavn, rad_nr), "er", round(avgMonth,3), "kWh")
     return avgMonth
 
 def getAverageDay(filnavn, rad_nr):
     avgDay = getAverageMonth(filnavn, rad_nr)/getDaysInMonth(filnavn, rad_nr)
-    print("Average forbruk for", getMonth(filnavn, rad_nr), "er", round(avgDay,3), "kWh")
     return avgDay
 
-Liste = Usage3
-Rad = 150
+def getAverageHour(filnavn, rad_nr):
+    avgHour = getAverageDay(filnavn, rad_nr)/24
+    return avgHour
+
+def findPeakYear(filnavn, rad_nr):
+    peakYear = findPeakInterval(filnavn)[0]*365
+    return peakYear
+
+def findPeakMonth(filnavn, rad_nr):
+    peakMonth = findPeakInterval(filnavn)[0]*getDaysInMonth(filnavn, rad_nr)
+    return peakMonth
+
+def findefficiency(filnavn, rad_nr):
+    eff = findPeakInterval(filnavn)[0]/getAverage(filnavn)
+    return eff
 
 vis_rad(Liste, Rad)
+
 print("Year:", getYear(Liste, Rad))
 print("Month:", getMonth(Liste, Rad))
 print("Day's in month:", getDaysInMonth(Liste, Rad))
+
+print("Peak årforbruk for", getYear(Liste, Rad), "er", round(findPeakYear(Liste, Rad),3), "kWh")
+print("Peak månedsforbruk for", getMonth(Liste, Rad), "er", round(findPeakMonth(Liste, Rad),3), "kWh")
 print("Peak intervallet er mellom", getstartTiddata(Liste, findPeakInterval(Liste)[1]), "og", getstopTiddata(Liste, findPeakInterval(Liste)[1]), "med", findPeakInterval(Liste)[0], "kWh")
 print("Laveste intervallet er mellom", getstartTiddata(Liste, findLowestInterval(Liste)[1]), "og", getstopTiddata(Liste, findLowestInterval(Liste)[1]), "med", findLowestInterval(Liste)[0], "kWh")
-getAverageMonth(Liste, Rad)
-getAverageDay(Liste, Rad)
+
+print("Average årforbruk for", getYear(Liste, Rad), "er", round(getAverageYear(Liste, Rad),3), "kWh")
+print("Average månedsforbruk for", getMonth(Liste, Rad), "er", round(getAverageMonth(Liste, Rad),3), "kWh")
+print("Average dagsforbruk for", getMonth(Liste, Rad), "er", round(getAverageDay(Liste, Rad),3), "kWh")
+print("Average timeforbruk for", getMonth(Liste, Rad), "er", round(getAverageHour(Liste, Rad),3), "kWh")
+
+print("Efficiency er", round(findefficiency(Liste, Rad),3))
