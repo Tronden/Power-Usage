@@ -1,28 +1,28 @@
-#Coded in Visual Studio Code with Python 3.9.12
-#Authors Emil Bjorneset, Simen Vangberg and Trond Zachariassen
-#Coding started 24.10.2022
-#Uploaded to github - Last changed 01.11.2022
-#Link: https://github.com/Tronden/Power-Usage
+#Coded in Visual Studio Code with Python 3.9.12.
+#Authors Emil Bjorneset, Simen Vangberg and Trond Zachariassen.
+#Coding started 24.10.2022.
+#Uploaded to github - Last changed 01.11.2022.
+#Link: https://github.com/Tronden/Power-Usage.
 
-#Importing libraries
+#Importing libraries.
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import calendar
 from calendar import monthrange
 
-#File directory (Change to your own data\ path)
+#File directory (Change to your own data\ path).
 Usage1 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
 Usage2 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
 Usage3 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
 
-#Printing available files
+#Printing available files.
 print("Available files:")
 print(Usage1[-51:-4])
 print(Usage2[-51:-4])
 print(Usage3[-51:-4])
 
-#User input  
+#User input.
 a = int(input("Choose date: 1 = Nov 2020, 2 = Des 2020, 3 = Jan 2021: "))
 if a == 1:
     Liste = Usage1
