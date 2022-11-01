@@ -5,14 +5,11 @@
 #Link: https://github.com/Tronden/Power-Usage.
 
 #Importing libraries.
-from importlib.resources import path
-from re import A
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import calendar
 from calendar import monthrange
-import pandas as pd
          
 #File directory (Change to your own path).
 Path = "A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage"
