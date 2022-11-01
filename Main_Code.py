@@ -10,7 +10,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import calendar
 from calendar import monthrange
-         
+
 #File directory (Change to your own path).
 Path = "A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage"
 
