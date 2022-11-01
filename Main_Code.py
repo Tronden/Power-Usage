@@ -1,5 +1,5 @@
 #Coded in Visual Studio Code
-#Author Emil Bjorneset, Simen Vangberg andTrond Zachariassen
+#Author Emil Bjorneset, Simen Vangberg and Trond Zachariassen
 #Date 01.11.2022
 
 #Importing libraries
