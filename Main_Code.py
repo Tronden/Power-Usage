@@ -1,6 +1,9 @@
-#Coded in Visual Studio Code
-#Author Emil Bjorneset, Simen Vangberg and Trond Zachariassen
-#Date 01.11.2022
+#Coded in Visual Studio Code with Python 3.9.12
+#Authors Emil Bjorneset, Simen Vangberg and Trond Zachariassen
+#Coding started 24.10.2022
+#Uploaded to github - Last changed 01.11.2022
+#Link: https://github.com/Tronden/Power-Usage
+
 
 #Importing libraries
 import numpy as np
