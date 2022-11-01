@@ -11,24 +11,16 @@ import matplotlib.pyplot as plt
 import calendar
 from calendar import monthrange
 
-#File directory (Change to your own path).
-Path = "A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage"
-
 #List of file names.
-File_Navn1 = "\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
-File_Navn2 = "\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
-File_Navn3 = "\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
-
-#Setting combining path and file name.
-File_1 = r"" + Path + File_Navn1
-File_2 = r"" + Path + File_Navn2
-File_3 = r"" + Path + File_Navn3
+File_1 = "data/meteringvalues-mp-xxxxx-consumption-202011.csv"
+File_2 = "data/meteringvalues-mp-xxxxx-consumption-202012.csv"
+File_3 = "data/meteringvalues-mp-xxxxx-consumption-202101.csv"
 
 #Printing available files. 
 print("Available files:")
-print(File_Navn1)
-print(File_Navn2)
-print(File_Navn3)
+print(File_1)
+print(File_2)
+print(File_3)
 
 #User input.
 a = int(input("Choose date: 1 = Nov 2020, 2 = Des 2020, 3 = Jan 2021: "))
