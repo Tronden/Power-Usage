@@ -5,37 +5,48 @@
 #Link: https://github.com/Tronden/Power-Usage.
 
 #Importing libraries.
+from importlib.resources import path
+from re import A
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import calendar
 from calendar import monthrange
+import pandas as pd
+         
+#File directory (Change to your own path).
+Path = "A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage"
 
-#File directory (Change to your own data\ path).
-Usage1 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
-Usage2 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
-Usage3 = r"A:\OneDrive Personal\OneDrive\Visual Studio Code\Innføring ingeniørfag\Power Usage\Power-Usage\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
+#List of file names.
+File_Navn1 = "\data\meteringvalues-mp-xxxxx-consumption-202011.csv"
+File_Navn2 = "\data\meteringvalues-mp-xxxxx-consumption-202012.csv"
+File_Navn3 = "\data\meteringvalues-mp-xxxxx-consumption-202101.csv"
 
-#Printing available files.
+#Setting combining path and file name.
+File_1 = r"" + Path + File_Navn1
+File_2 = r"" + Path + File_Navn2
+File_3 = r"" + Path + File_Navn3
+
+#Printing available files. 
 print("Available files:")
-print(Usage1[-51:-4])
-print(Usage2[-51:-4])
-print(Usage3[-51:-4])
+print(File_Navn1)
+print(File_Navn2)
+print(File_Navn3)
 
 #User input.
 a = int(input("Choose date: 1 = Nov 2020, 2 = Des 2020, 3 = Jan 2021: "))
 if a == 1:
-    Liste = Usage1
+    File = File_1
     Year = int(2020)
     Month = int(11)
     a = 0     
 elif a == 2:
-    Liste = Usage2
+    File = File_2
     Year = int(2020)
     Month = int(12)
     a = 0  
 elif a == 3:
-    Liste = Usage3
+    File = File_3
     Year = int(2021)
     Month = int(1)
     a = 0   
@@ -114,11 +125,11 @@ def plotAverageHourlyConsumption(filnavn):
 
 #Function for main program.
 def main():
-    plotAveragePerDayInMonth(Liste)
-    plotAverageHourlyConsumption(Liste)
+    plotAveragePerDayInMonth(File)
+    plotAverageHourlyConsumption(File)
     print("Day's in month:", getDaysInMonth())
-    print("Average hourly consumption in month:", getAverage(Liste), "kWh")
-    print("Peak interval is between", getstartTiddata(Liste, findPeakInterval(Liste)[1]), "and", getstopTiddata(Liste, findPeakInterval(Liste)[1]), "with", findPeakInterval(Liste)[0], "kWh")
+    print("Average hourly consumption in month:", getAverage(File), "kWh")
+    print("Peak interval is between", getstartTiddata(File, findPeakInterval(File)[1]), "and", getstopTiddata(File, findPeakInterval(File)[1]), "with", findPeakInterval(File)[0], "kWh")
 
 #Calling main program.
 main()
