@@ -4,7 +4,6 @@
 #Uploaded to github - Last changed 01.11.2022
 #Link: https://github.com/Tronden/Power-Usage
 
-
 #Importing libraries
 import numpy as np
 import matplotlib
